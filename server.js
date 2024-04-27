@@ -9,6 +9,7 @@ const flash = require('express-flash');
 const logger = require('morgan');
 const mainRoutes = require('./routes/main');
 const adminRoutes = require('./routes/admin');
+const cors = require('cors');
 const fleetRoutes = require('./routes/fleet');
 const deploymentRoutes = require('./routes/deployment');
 
@@ -18,7 +19,11 @@ require('dotenv').config({ path: './config/.env' });
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//Logging
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 
 // Setup Sessions - stored in MongoDB
 app.use(
