@@ -60,6 +60,9 @@ exports.getFleets = async (req, res) => {
   try {
     const result = await prisma.fleet.findMany({
       include: {
+        _count: {
+          select: { Members: true },
+        },
         Deployments: true,
       },
     });
